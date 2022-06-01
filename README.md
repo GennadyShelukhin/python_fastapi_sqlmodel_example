@@ -4,6 +4,8 @@
 
 ## This is my first test project on these technologies. Correctness and performance is not guaranteed.
 
+## Bug in app/models/shop.py - I can't deal with it
+
 ### Resources Used:
 
 * https://medium.com/@estretyakov/the-ultimate-async-setup-fastapi-sqlmodel-alembic-pytest-ae5cdcfed3d4
