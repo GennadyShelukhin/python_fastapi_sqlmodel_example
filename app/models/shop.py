@@ -23,6 +23,55 @@ class ShopRead(ShopBase):
 
 class ShopGet(ShopRead):
     products = []
+    # products: List["ProductRead"] = []
+    """
+    ------------------------------------------------------------------------------------------------------
+    Problem №1:
+    Exception `TypeError: issubclass() arg 1 must be a class` occurs when open swagger if make annotation:
+    products: List["ProductRead"] = []
+    Error occurs when using TYPE_CHECKING in import
+    
+    ------------------------------------------------------------------------------------------------------
+    Problem №2:
+    Endpoint shop/get_by_id always return empty product list
+    Expected that endpoint return products if it in db.
+    I use Relationship(), docs: https://sqlmodel.tiangolo.com/tutorial/fastapi/relationships/
+    
+    Preconditions:
+    * shop with id=1
+    * 2 products with shop_id=1
+    
+    Steps:
+    * Call http://0.0.0.0:8081/shop/get_by_id?shop_id=1
+    
+    Actual result:
+    {
+      "name": "Adidas",
+      "id": 1,
+      "is_main": true,
+      "products": []
+    }
+    
+    Expected result:
+    {
+      "name": "Adidas",
+      "id": 1,
+      "is_main": true,
+      "products": [
+        {
+          "id": 1,
+          "name": "sneakers",
+          "shop_id": 1
+        },
+        {
+          "id": 2,
+          "name": "T-shirt",
+          "shop_id": 1
+        }
+      ]
+    }
+    ------------------------------------------------------------------------------------------------------
+    """
     is_main: bool = True
 
 
